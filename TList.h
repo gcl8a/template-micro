@@ -472,9 +472,8 @@ public:
 
 template < class T > class TSList : public TList<T>
 {
-public:
-        virtual T* AddElement( TListElement < T > * );
-        virtual T* FindFirst(const T&);
+protected:
+    virtual T* AddElement( TListElement < T > * );
 };
 
 template < class T > T* TSList < T >::AddElement(TListElement < T > * ptElement)
@@ -488,8 +487,10 @@ of prev, next, etc. SORTED!
 
     //start at the END and work backwards
     TListElement < T > * current = TList<T>::_ptTail;
-    while (current) {
-        if (ptElement->_tData > current->_tData) {
+    while (current)
+    {
+        if (ptElement->_tData > current->_tData)
+        {
             if (current == TList<T>::_ptTail) TList<T>::_ptTail = ptElement;
 
             if (current -> _ptNext) current -> _ptNext -> _ptPrev = ptElement;
@@ -528,15 +529,17 @@ of prev, next, etc. SORTED!
         return &ptElement->_tData;
     }
 }
-
-template < class T > T* TSList < T >::FindFirst(const T& t) {
-    TListElement < T > * ptCurrent = TList<T>::_ptHead;
-    while (ptCurrent) {
-        if (t > ptCurrent->_tData)
-            return &ptCurrent->_tData;
-        ptCurrent = ptCurrent->_ptNext;
-    }
-
-    return NULL;
-}
+//
+//template < class T > T* TSList < T >::FindFirst(const T& t)
+//{
+//    TListElement < T > * ptCurrent = TList<T>::_ptHead;
+//    while (ptCurrent)
+//    {
+//        if (t > ptCurrent->_tData)
+//            return &ptCurrent->_tData;
+//        ptCurrent = ptCurrent->_ptNext;
+//    }
+//
+//    return NULL;
+//}
 #endif
