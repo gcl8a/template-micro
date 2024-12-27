@@ -102,17 +102,12 @@ public:
 			return NULL;
 	}
 
-    int Pop(T& val) //removes head from the list
+    T* Pop(void) //removes head from the list
     {
-        int retVal = 0;
-        if(_ptHead)
-        {
-            retVal = 1;
-            val = *GetHead();
-            DeleteElement(_ptHead);
-        }
+        T* pVal = GetHead();
+        if(pVal) DeleteElement(_ptHead);
         
-        return retVal;
+        return pVal;
     }
     
     int Flush( void );
